@@ -1,21 +1,20 @@
 // src/routes/cart.routes.ts
 import express from 'express';
-import { addToCart, 
-    getCart, 
-    removeFromCart,
+import { 
+    addToCart, 
     getUserCart,
     updateCartItemQuantity,
     deleteCartItem,
-    
+    checkoutOrder // نقلناها من order controller
 } from '../controllers/cart.controller';
 
 const router = express.Router();
 
-router.post('/:productId', addToCart);       // ➕ إضافة للسلة
-router.get('/', getCart);                    // 📦 استعراض السلة
-router.delete('/:productId', removeFromCart); // ❌ حذف منتج من السلة
-router.get('/:user_id', getUserCart);
-router.put('/:user_id/:product_id', updateCartItemQuantity);
-router.delete('/:user_id/:product_id', deleteCartItem);
+// ✅ Routes مرتبة ومش متضاربة
+router.get('/user/:user_id', getUserCart);                    // 📦 جلب سلة مستخدم معين
+router.post('/add/:productId', addToCart);                    // ➕ إضافة للسلة
+router.put('/user/:user_id/product/:product_id', updateCartItemQuantity); // 🔄 تحديث الكمية
+router.delete('/user/:user_id/product/:product_id', deleteCartItem);      // ❌ حذف من السلة
+router.post('/checkout', checkoutOrder);   
 
 export default router;
