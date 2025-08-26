@@ -8,7 +8,10 @@ import {
   getMonthlySalesReport,
   getTopPerformingShops,
   toggleUserStatus,
-  updateSubscriptionPrices
+  updateSubscriptionPrices,
+  addNewShop,
+  deleteShop,
+  getAllShops
 } from '../controllers/admin.controller';
 import { protect } from '../middlewares/authMiddleware';
 import { requireAdmin } from '../middlewares/adminMiddleware';
@@ -29,8 +32,11 @@ router.get('/users', getAllUsers);                         // جميع المس�
 router.put('/users/:userId/toggle-status', toggleUserStatus); // حظر/إلغاء حظر
 
 // 🏪 إدارة المحلات
+router.get('/shops', getAllShops);                         // 🆕 جميع المتاجر
 router.get('/shops/pending', getPendingShops);             // المحلات المعلقة
+router.post('/shops', addNewShop);                         // 🆕 إضافة تاجر جديد
 router.put('/shops/:shopId/status', updateShopStatus);     // قبول/رفض محل
+router.delete('/shops/:shopId', deleteShop);               // 🆕 حذف تاجر
 
 // 💰 إدارة الأسعار
 router.put('/subscription-prices', updateSubscriptionPrices); // تحديث أسعار الباقات
