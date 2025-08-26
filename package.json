@@ -6,13 +6,15 @@
   "scripts": {
     "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
     "build": "tsc",
-    "start": "node src/index.js",
+    "start": "node dist/index.js",
     "test": "jest",
     "test:watch": "jest --watch",
     "lint": "eslint src/**/*.ts",
     "seed": "ts-node src/scripts/seed.ts",
     "migrate": "ts-node src/scripts/migrate.ts",
-    "db:reset": "ts-node src/scripts/reset-db.ts"
+    "db:reset": "ts-node src/scripts/reset-db.ts",
+    "db:setup": "npm run migrate && npm run seed",
+    "db:fresh": "npm run db:reset && npm run db:setup"
   },
   "keywords": [
     "ecommerce",
@@ -54,6 +56,7 @@
     "nodemon": "^3.0.1",
     "supertest": "^6.3.3",
     "ts-jest": "^29.1.1",
+    "ts-node": "^10.9.1",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.2.2"
   },
