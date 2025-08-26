@@ -10,8 +10,10 @@ import shopRoutes from './routes/shop.routes';
 import productRoutes from './routes/product.routes';
 import orderRoutes from './routes/order.routes';
 import cartRoutes from './routes/cart.routes';
-import subscriptionRoutes from './routes/subscription.routes'; // 🆕
-import adminRoutes from './routes/admin.routes'; // 🆕
+import subscriptionRoutes from './routes/subscription.routes';
+import adminRoutes from './routes/admin.routes';
+import searchRoutes from './routes/search.routes'; // 🆕
+import notificationRoutes from './routes/notification.routes'; // 🆕
 
 dotenv.config();
 
@@ -29,8 +31,10 @@ app.use('/api/shops', shopRoutes);
 app.use('/api/products', productRoutes);
 app.use('/api/orders', orderRoutes);
 app.use('/api/cart', cartRoutes);
-app.use('/api/subscriptions', subscriptionRoutes); // 🆕
-app.use('/api/admin', adminRoutes); // 🆕
+app.use('/api/subscriptions', subscriptionRoutes);
+app.use('/api/admin', adminRoutes);
+app.use('/api/search', searchRoutes); // 🆕
+app.use('/api/notifications', notificationRoutes); // 🆕
 
 // Health check endpoint
 app.get('/health', (req, res) => {
@@ -58,4 +62,6 @@ app.use('*', (req, res) => {
 app.listen(PORT, () => {
   console.log(`🚀 EMall Server running on http://localhost:${PORT}`);
   console.log(`📊 Health check: http://localhost:${PORT}/health`);
+  console.log(`🔍 Search API: http://localhost:${PORT}/api/search`);
+  console.log(`🔔 Notifications API: http://localhost:${PORT}/api/notifications`);
 });
